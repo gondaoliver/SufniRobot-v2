@@ -3,7 +3,7 @@
 	<p>
 		<a href="https://github.com/gondaoliver"><img src="https://i.imgur.com/vUIHytG.png" width="192" alt="SufniLogo" /></a>
 	</p>
-  # SufniRobot-v2
+	<h2>SufniRobot-v2</h2>
 </div>
 A SufniTech robotika csapat továbbfejlesztett robotjának kódjai.
 <br><br>
