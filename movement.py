@@ -18,7 +18,6 @@ LEFT1.2 = 19
 LEFT2.1 = 5
 LEFT2.2 = 6
 
-ENA = 16
 
 GPIO.setmode(GPIO.BCM)
 
@@ -30,9 +29,6 @@ GPIO.setup(LEFT1.1, GPIO.OUT)
 GPIO.setup(LEFT1.2, GPIO.OUT)
 GPIO.setup(LEFT2.1, GPIO.OUT)
 GPIO.setup(LEFT2.2, GPIO.OUT)
-
-GPIO.setup(ENA, GPIO.OUT)
-GPIO.output(ENA, GPIO.HIGH)
 
 # Steering servo setup (unchanged)
 # p = GPIO.PWM(SERVO_Steering, 50)
@@ -128,9 +124,33 @@ def on_L2_btn_released():
     GPIO.output(LEFT2.2, GPIO.LOW)
 
 def on_left_stick_moved(joystick):
-    duty_cycle = 7.5 + (joystick.x * -2.5)
-    duty_cycle = max(5, min(10, duty_cycle))
-    p.ChangeDutyCycle(duty_cycle)
+    # Convert joystick values to motor speeds
+    x, y = joystick
+    left_speed = max(-1, min(1, y + x))
+    right_speed = max(-1, min(1, y - x))
+    
+    # Set motor speeds
+    if left_speed > 0:
+        GPIO.output(LEFT1.1, GPIO.HIGH)
+        GPIO.output(LEFT1.2, GPIO.LOW)
+        GPIO.output(LEFT2.1, GPIO.HIGH)
+        GPIO.output(LEFT2.2, GPIO.LOW)
+    else:
+        GPIO.output(LEFT1.1, GPIO.LOW)
+        GPIO.output(LEFT1.2, GPIO.HIGH)
+        GPIO.output(LEFT2.1, GPIO.LOW)
+        GPIO.output(LEFT2.2, GPIO.HIGH)
+        
+    if right_speed > 0:
+        GPIO.output(RIGHT1.1, GPIO.HIGH)
+        GPIO.output(RIGHT1.2, GPIO.LOW)
+        GPIO.output(RIGHT2.1, GPIO.HIGH)
+        GPIO.output(RIGHT2.2, GPIO.LOW)
+    else:
+        GPIO.output(RIGHT1.1, GPIO.LOW)
+        GPIO.output(RIGHT1.2, GPIO.HIGH)
+        GPIO.output(RIGHT2.1, GPIO.LOW)
+        GPIO.output(RIGHT2.2, GPIO.HIGH)
 
 # Event bindings
 controller.btn_ps.on_down(lambda: stop())
