@@ -172,7 +172,7 @@ controller.btn_r2.on_up(on_R2_btn_released)
 controller.btn_l2.on_down(on_L2_btn_pressed)
 controller.btn_l2.on_up(on_L2_btn_released)
 controller.btn_l1.on_down(on_L1_btn_pressed)
-contoller.btn_l1.on_up(on_L1_btn_released)
+controller.btn_l1.on_up(on_L1_btn_released)
 controller.btn_r1.on_down(on_R1_btn_pressed)
 controller.btn_r1.on_up(on_R1_btn_released)
 
