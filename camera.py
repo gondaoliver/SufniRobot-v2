@@ -16,6 +16,7 @@ def scan_qr_codes(frame):
             scanned_data.add(data)
             print(f"Scanned QR Code: {data}")
             f.write(data + "\n")
+            f.flush()
 
 def draw_rectangle_around_qr(frame):
     decoded_objects = decode(frame)

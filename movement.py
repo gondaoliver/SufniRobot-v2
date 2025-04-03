@@ -8,14 +8,15 @@ from adafruit_servokit import ServoKit
 #servo_positions = [90, 90, 90]  # Initial positions [Shoulder, Elbow, Gripper]
 
 # Motor control setup (unchanged)
-# 1.x front 2.x back
+# 1.x front 2.x back x.1 forward x.2 backwarde
+
 RIGHT11 = 24
 RIGHT12 = 23
 RIGHT21 = 25
 RIGHT22 = 27 
 LEFT11 = 13
 LEFT12 = 19
-LEFT21 = 5
+LEFT21 = 6
 LEFT22 = 26
 
 
