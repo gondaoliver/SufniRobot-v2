@@ -9,26 +9,26 @@ from adafruit_servokit import ServoKit
 
 # Motor control setup (unchanged)
 # 1.x front 2.x back
-RIGHT1.1 = 24
-RIGHT1.2 = 23
-RIGHT2.1 = 25
-RIGHT2.2 = 27 
-LEFT1.1 = 13
-LEFT1.2 = 19
-LEFT2.1 = 5
-LEFT2.2 = 6
+RIGHT11 = 24
+RIGHT12 = 23
+RIGHT21 = 25
+RIGHT22 = 27 
+LEFT11 = 13
+LEFT12 = 19
+LEFT21 = 5
+LEFT22 = 6
 
 
 GPIO.setmode(GPIO.BCM)
 
-GPIO.setup(RIGHT1.1, GPIO.OUT)
-GPIO.setup(RIGHT1.2, GPIO.OUT)
-GPIO.setup(RIGHT2.1, GPIO.OUT)
-GPIO.setup(RIGHT2.2, GPIO.OUT) 
-GPIO.setup(LEFT1.1, GPIO.OUT)
-GPIO.setup(LEFT1.2, GPIO.OUT)
-GPIO.setup(LEFT2.1, GPIO.OUT)
-GPIO.setup(LEFT2.2, GPIO.OUT)
+GPIO.setup(RIGHT11, GPIO.OUT)
+GPIO.setup(RIGHT12, GPIO.OUT)
+GPIO.setup(RIGHT21, GPIO.OUT)
+GPIO.setup(RIGHT22, GPIO.OUT) 
+GPIO.setup(LEFT11, GPIO.OUT)
+GPIO.setup(LEFT12, GPIO.OUT)
+GPIO.setup(LEFT21, GPIO.OUT)
+GPIO.setup(LEFT22, GPIO.OUT)
 
 # Steering servo setup (unchanged)
 # p = GPIO.PWM(SERVO_Steering, 50)
@@ -38,20 +38,20 @@ GPIO.setup(LEFT2.2, GPIO.OUT)
 controller = DualSenseController()
 is_running = True
 
-def stop():
-    global is_running
-    is_running = False
+# def stop():
+#     global is_running
+#     is_running = False
     
-    # # Stop all servos
-    # for i in range(3):
-    #     kit.servo[i].angle = None  # Release servo motor
+#     # # Stop all servos
+#     # for i in range(3):
+#     #     kit.servo[i].angle = None  # Release servo motor
         
-    # Stop vehicle motor and clean up
-    GPIO.output(IN1, GPIO.LOW)
-    GPIO.output(IN2, GPIO.LOW)
-    p.stop()
-    GPIO.cleanup()
-    print("All motors stopped and cleaned up")
+#     # Stop vehicle motor and clean up
+#     GPIO.output(IN1, GPIO.LOW)
+#     GPIO.output(IN2, GPIO.LOW)
+#     p.stop()
+#     GPIO.cleanup()
+#     print("All motors stopped and cleaned up")
 
 # def move_servo(index, step):
 #     """Move specified servo with angle clamping"""
@@ -83,45 +83,45 @@ def stop():
 
 # Original vehicle controls (unchanged)
 def on_R2_btn_pressed():
-    GPIO.output(RIGHT1.1, GPIO.HIGH)
-    GPIO.output(RIGHT1.2, GPIO.LOW)
-    GPIO.output(RIGHT2.1, GPIO.HIGH)
-    GPIO.output(RIGHT2.2, GPIO.LOW)
-    GPIO.output(LEFT1.1, GPIO.HIGH)
-    GPIO.output(LEFT1.2, GPIO.LOW)
-    GPIO.output(LEFT2.1, GPIO.HIGH)
-    GPIO.output(LEFT2.2, GPIO.LOW)
+    GPIO.output(RIGHT11, GPIO.HIGH)
+    GPIO.output(RIGHT12, GPIO.LOW)
+    GPIO.output(RIGHT21, GPIO.HIGH)
+    GPIO.output(RIGHT22, GPIO.LOW)
+    GPIO.output(LEFT11, GPIO.HIGH)
+    GPIO.output(LEFT12, GPIO.LOW)
+    GPIO.output(LEFT21, GPIO.HIGH)
+    GPIO.output(LEFT22, GPIO.LOW)
 
 def on_R2_btn_released():
-    GPIO.output(RIGHT1.1, GPIO.LOW)
-    GPIO.output(RIGHT1.2, GPIO.LOW)
-    GPIO.output(RIGHT2.1, GPIO.LOW)
-    GPIO.output(RIGHT2.2, GPIO.LOW)
-    GPIO.output(LEFT1.1, GPIO.LOW)
-    GPIO.output(LEFT1.2, GPIO.LOW)
-    GPIO.output(LEFT2.1, GPIO.LOW)
-    GPIO.output(LEFT2.2, GPIO.LOW)
+    GPIO.output(RIGHT11, GPIO.LOW)
+    GPIO.output(RIGHT12, GPIO.LOW)
+    GPIO.output(RIGHT21, GPIO.LOW)
+    GPIO.output(RIGHT22, GPIO.LOW)
+    GPIO.output(LEFT11, GPIO.LOW)
+    GPIO.output(LEFT12, GPIO.LOW)
+    GPIO.output(LEFT21, GPIO.LOW)
+    GPIO.output(LEFT22, GPIO.LOW)
 
 
 def on_L2_btn_pressed():
-    GPIO.output(RIGHT1.1, GPIO.LOW)
-    GPIO.output(RIGHT1.2, GPIO.HIGH)
-    GPIO.output(RIGHT2.1, GPIO.LOW)
-    GPIO.output(RIGHT2.2, GPIO.HIGH)
-    GPIO.output(LEFT1.1, GPIO.LOW)
-    GPIO.output(LEFT1.2, GPIO.HIGH)
-    GPIO.output(LEFT2.1, GPIO.LOW)
-    GPIO.output(LEFT2.2, GPIO.HIGH)
+    GPIO.output(RIGHT11, GPIO.LOW)
+    GPIO.output(RIGHT12, GPIO.HIGH)
+    GPIO.output(RIGHT21, GPIO.LOW)
+    GPIO.output(RIGHT22, GPIO.HIGH)
+    GPIO.output(LEFT11, GPIO.LOW)
+    GPIO.output(LEFT12, GPIO.HIGH)
+    GPIO.output(LEFT21, GPIO.LOW)
+    GPIO.output(LEFT22, GPIO.HIGH)
 
 def on_L2_btn_released():
-    GPIO.output(RIGHT1.1, GPIO.LOW)
-    GPIO.output(RIGHT1.2, GPIO.LOW)
-    GPIO.output(RIGHT2.1, GPIO.LOW)
-    GPIO.output(RIGHT2.2, GPIO.LOW)
-    GPIO.output(LEFT1.1, GPIO.LOW)
-    GPIO.output(LEFT1.2, GPIO.LOW)
-    GPIO.output(LEFT2.1, GPIO.LOW)
-    GPIO.output(LEFT2.2, GPIO.LOW)
+    GPIO.output(RIGHT11, GPIO.LOW)
+    GPIO.output(RIGHT12, GPIO.LOW)
+    GPIO.output(RIGHT21, GPIO.LOW)
+    GPIO.output(RIGHT22, GPIO.LOW)
+    GPIO.output(LEFT11, GPIO.LOW)
+    GPIO.output(LEFT12, GPIO.LOW)
+    GPIO.output(LEFT21, GPIO.LOW)
+    GPIO.output(LEFT22, GPIO.LOW)
 
 def on_left_stick_moved(joystick):
     # Convert joystick values to motor speeds
@@ -131,26 +131,26 @@ def on_left_stick_moved(joystick):
     
     # Set motor speeds
     if left_speed > 0:
-        GPIO.output(LEFT1.1, GPIO.HIGH)
-        GPIO.output(LEFT1.2, GPIO.LOW)
-        GPIO.output(LEFT2.1, GPIO.HIGH)
-        GPIO.output(LEFT2.2, GPIO.LOW)
+        GPIO.output(LEFT11, GPIO.HIGH)
+        GPIO.output(LEFT12, GPIO.LOW)
+        GPIO.output(LEFT21, GPIO.HIGH)
+        GPIO.output(LEFT22, GPIO.LOW)
     else:
-        GPIO.output(LEFT1.1, GPIO.LOW)
-        GPIO.output(LEFT1.2, GPIO.HIGH)
-        GPIO.output(LEFT2.1, GPIO.LOW)
-        GPIO.output(LEFT2.2, GPIO.HIGH)
+        GPIO.output(LEFT11, GPIO.LOW)
+        GPIO.output(LEFT12, GPIO.HIGH)
+        GPIO.output(LEFT21, GPIO.LOW)
+        GPIO.output(LEFT22, GPIO.HIGH)
         
     if right_speed > 0:
-        GPIO.output(RIGHT1.1, GPIO.HIGH)
-        GPIO.output(RIGHT1.2, GPIO.LOW)
-        GPIO.output(RIGHT2.1, GPIO.HIGH)
-        GPIO.output(RIGHT2.2, GPIO.LOW)
+        GPIO.output(RIGHT11, GPIO.HIGH)
+        GPIO.output(RIGHT12, GPIO.LOW)
+        GPIO.output(RIGHT21, GPIO.HIGH)
+        GPIO.output(RIGHT22, GPIO.LOW)
     else:
-        GPIO.output(RIGHT1.1, GPIO.LOW)
-        GPIO.output(RIGHT1.2, GPIO.HIGH)
-        GPIO.output(RIGHT2.1, GPIO.LOW)
-        GPIO.output(RIGHT2.2, GPIO.HIGH)
+        GPIO.output(RIGHT11, GPIO.LOW)
+        GPIO.output(RIGHT12, GPIO.HIGH)
+        GPIO.output(RIGHT21, GPIO.LOW)
+        GPIO.output(RIGHT22, GPIO.HIGH)
 
 # Event bindings
 controller.btn_ps.on_down(lambda: stop())
