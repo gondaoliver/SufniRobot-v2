@@ -38,20 +38,26 @@ GPIO.setup(LEFT22, GPIO.OUT)
 controller = DualSenseController()
 is_running = True
 
-# def stop():
-#     global is_running
-#     is_running = False
+def stop():
+    global is_running
+    is_running = False
     
-#     # # Stop all servos
-#     # for i in range(3):
-#     #     kit.servo[i].angle = None  # Release servo motor
+    # # Stop all servos
+    # for i in range(3):
+    #     kit.servo[i].angle = None  # Release servo motor
         
-#     # Stop vehicle motor and clean up
-#     GPIO.output(IN1, GPIO.LOW)
-#     GPIO.output(IN2, GPIO.LOW)
-#     p.stop()
-#     GPIO.cleanup()
-#     print("All motors stopped and cleaned up")
+    # Stop vehicle motor and clean up
+    GPIO.output(RIGHT11, GPIO.LOW)
+    GPIO.output(RIGHT12, GPIO.LOW)
+    GPIO.output(RIGHT21, GPIO.LOW)
+    GPIO.output(RIGHT22, GPIO.LOW)
+    GPIO.output(LEFT11, GPIO.LOW)
+    GPIO.output(LEFT12, GPIO.LOW)
+    GPIO.output(LEFT21, GPIO.LOW)
+    GPIO.output(LEFT22, GPIO.LOW)
+
+    GPIO.cleanup()
+    print("All motors stopped and cleaned up")
 
 # def move_servo(index, step):
 #     """Move specified servo with angle clamping"""
