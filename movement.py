@@ -115,8 +115,8 @@ def on_L2_btn_pressed():
     GPIO.output(RIGHT12, GPIO.HIGH)
     GPIO.output(RIGHT21, GPIO.LOW)
     GPIO.output(RIGHT22, GPIO.HIGH)
-    GPIO.output(LEFT11, GPIO.LOW)
-    GPIO.output(LEFT12, GPIO.HIGH)
+    GPIO.output(LEFT11, GPIO.HIGH)
+    GPIO.output(LEFT12, GPIO.LOW)
     GPIO.output(LEFT21, GPIO.LOW)
     GPIO.output(LEFT22, GPIO.HIGH)
 
@@ -197,4 +197,4 @@ try:
         sleep(0.001)
 finally:
     stop()  # Ensure cleanup even if error occurs
-    controller.deactivate()
+    controller.deactivate()y
