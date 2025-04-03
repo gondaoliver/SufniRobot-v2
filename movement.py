@@ -15,7 +15,7 @@ RIGHT12 = 23
 RIGHT21 = 25
 RIGHT22 = 27 
 LEFT11 = 13
-LEFT12 = 19
+LEFT12 = 16
 LEFT21 = 6
 LEFT22 = 5
 
@@ -115,8 +115,8 @@ def on_L2_btn_pressed():
     GPIO.output(RIGHT12, GPIO.HIGH)
     GPIO.output(RIGHT21, GPIO.LOW)
     GPIO.output(RIGHT22, GPIO.HIGH)
-    GPIO.output(LEFT11, GPIO.HIGH)
-    GPIO.output(LEFT12, GPIO.LOW)
+    GPIO.output(LEFT11, GPIO.LOW)
+    GPIO.output(LEFT12, GPIO.HIGH)
     GPIO.output(LEFT21, GPIO.LOW)
     GPIO.output(LEFT22, GPIO.HIGH)
 
@@ -136,9 +136,9 @@ def on_L1_btn_pressed():
     GPIO.output(LEFT21, GPIO.LOW)
     GPIO.output(LEFT22, GPIO.LOW)
     GPIO.output(RIGHT11, GPIO.HIGH)
-    GPIO.output(RIGHT12, GPIO.HIGH)
+    GPIO.output(RIGHT12, GPIO.LOW)
     GPIO.output(RIGHT21, GPIO.HIGH)
-    GPIO.output(RIGHT22, GPIO.HIGH)
+    GPIO.output(RIGHT22, GPIO.LOW)
 
 def on_L1_btn_released():
     GPIO.output(LEFT11, GPIO.LOW)
@@ -152,9 +152,9 @@ def on_L1_btn_released():
 
 def on_R1_btn_pressed():
     GPIO.output(LEFT11, GPIO.HIGH)
-    GPIO.output(LEFT12, GPIO.HIGH)
+    GPIO.output(LEFT12, GPIO.LOW)
     GPIO.output(LEFT21, GPIO.HIGH)
-    GPIO.output(LEFT22, GPIO.HIGH)
+    GPIO.output(LEFT22, GPIO.LOW)
     GPIO.output(RIGHT11, GPIO.LOW)
     GPIO.output(RIGHT12, GPIO.LOW)
     GPIO.output(RIGHT21, GPIO.LOW)
@@ -197,4 +197,4 @@ try:
         sleep(0.001)
 finally:
     stop()  # Ensure cleanup even if error occurs
-    controller.deactivate()y
+    controller.deactivate()
