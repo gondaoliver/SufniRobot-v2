@@ -2,10 +2,6 @@ from time import sleep
 import RPi.GPIO as GPIO
 from dualsense_controller import DualSenseController
 from adafruit_servokit import ServoKit
-import threading
-
-# Create a lock to prevent simultaneous conflicting actions
-gpio_lock = threading.Lock()
 
 # Initialize servo driver (3 servos: 0-Shoulder, 1-Elbow, 2-Gripper)
 #kit = ServoKit(channels=16)
@@ -115,59 +111,54 @@ def on_R2_btn_released():
 
 
 def on_L2_btn_pressed():
-    with gpio_lock:
-        GPIO.output(RIGHT11, GPIO.LOW)
-        GPIO.output(RIGHT12, GPIO.HIGH)
-        GPIO.output(RIGHT21, GPIO.LOW)
-        GPIO.output(RIGHT22, GPIO.HIGH)
-        GPIO.output(LEFT11, GPIO.LOW)
-        GPIO.output(LEFT12, GPIO.HIGH)
-        GPIO.output(LEFT21, GPIO.LOW)
-        GPIO.output(LEFT22, GPIO.HIGH)
+    GPIO.output(RIGHT11, GPIO.LOW)
+    GPIO.output(RIGHT12, GPIO.HIGH)
+    GPIO.output(RIGHT21, GPIO.LOW)
+    GPIO.output(RIGHT22, GPIO.HIGH)
+    GPIO.output(LEFT11, GPIO.LOW)
+    GPIO.output(LEFT12, GPIO.HIGH)
+    GPIO.output(LEFT21, GPIO.LOW)
+    GPIO.output(LEFT22, GPIO.HIGH)
 
 def on_L2_btn_released():
-    with gpio_lock:
-        GPIO.output(RIGHT11, GPIO.LOW)
-        GPIO.output(RIGHT12, GPIO.LOW)
-        GPIO.output(RIGHT21, GPIO.LOW)
-        GPIO.output(RIGHT22, GPIO.LOW)
-        GPIO.output(LEFT11, GPIO.LOW)
-        GPIO.output(LEFT12, GPIO.LOW)
-        GPIO.output(LEFT21, GPIO.LOW)
-        GPIO.output(LEFT22, GPIO.LOW)
+    GPIO.output(RIGHT11, GPIO.LOW)
+    GPIO.output(RIGHT12, GPIO.LOW)
+    GPIO.output(RIGHT21, GPIO.LOW)
+    GPIO.output(RIGHT22, GPIO.LOW)
+    GPIO.output(LEFT11, GPIO.LOW)
+    GPIO.output(LEFT12, GPIO.LOW)
+    GPIO.output(LEFT21, GPIO.LOW)
+    GPIO.output(LEFT22, GPIO.LOW)
 
 def on_L1_btn_pressed():
-    with gpio_lock:
-        GPIO.output(LEFT11, GPIO.LOW)
-        GPIO.output(LEFT12, GPIO.HIGH)
-        GPIO.output(LEFT21, GPIO.LOW)
-        GPIO.output(LEFT22, GPIO.HIGH)
-        GPIO.output(RIGHT11, GPIO.HIGH)
-        GPIO.output(RIGHT12, GPIO.LOW)
-        GPIO.output(RIGHT21, GPIO.HIGH)
-        GPIO.output(RIGHT22, GPIO.LOW)
+    GPIO.output(LEFT11, GPIO.LOW)
+    GPIO.output(LEFT12, GPIO.HIGH)
+    GPIO.output(LEFT21, GPIO.LOW)
+    GPIO.output(LEFT22, GPIO.HIGH)
+    GPIO.output(RIGHT11, GPIO.HIGH)
+    GPIO.output(RIGHT12, GPIO.LOW)
+    GPIO.output(RIGHT21, GPIO.HIGH)
+    GPIO.output(RIGHT22, GPIO.LOW)
 
 def on_L1_btn_released():
-    with gpio_lock:
-        GPIO.output(LEFT11, GPIO.LOW)
-        GPIO.output(LEFT12, GPIO.LOW)
-        GPIO.output(LEFT21, GPIO.LOW)
-        GPIO.output(LEFT22, GPIO.LOW)
-        GPIO.output(RIGHT11, GPIO.LOW)
-        GPIO.output(RIGHT12, GPIO.LOW)
-        GPIO.output(RIGHT21, GPIO.LOW)
-        GPIO.output(RIGHT22, GPIO.LOW)
+    GPIO.output(LEFT11, GPIO.LOW)
+    GPIO.output(LEFT12, GPIO.LOW)
+    GPIO.output(LEFT21, GPIO.LOW)
+    GPIO.output(LEFT22, GPIO.LOW)
+    GPIO.output(RIGHT11, GPIO.LOW)
+    GPIO.output(RIGHT12, GPIO.LOW)
+    GPIO.output(RIGHT21, GPIO.LOW)
+    GPIO.output(RIGHT22, GPIO.LOW)
 
 def on_R1_btn_pressed():
-    with gpio_lock:
-        GPIO.output(LEFT11, GPIO.HIGH)
-        GPIO.output(LEFT12, GPIO.LOW)
-        GPIO.output(LEFT21, GPIO.HIGH)
-        GPIO.output(LEFT22, GPIO.LOW)
-        GPIO.output(RIGHT11, GPIO.LOW)
-        GPIO.output(RIGHT12, GPIO.HIGH)
-        GPIO.output(RIGHT21, GPIO.LOW)
-        GPIO.output(RIGHT22, GPIO.HIGH)
+    GPIO.output(LEFT11, GPIO.HIGH)
+    GPIO.output(LEFT12, GPIO.LOW)
+    GPIO.output(LEFT21, GPIO.HIGH)
+    GPIO.output(LEFT22, GPIO.LOW)
+    GPIO.output(RIGHT11, GPIO.LOW)
+    GPIO.output(RIGHT12, GPIO.HIGH)
+    GPIO.output(RIGHT21, GPIO.LOW)
+    GPIO.output(RIGHT22, GPIO.HIGH)
 
 def on_R1_btn_released():
     GPIO.output(LEFT11, GPIO.LOW)
