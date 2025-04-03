@@ -123,34 +123,47 @@ def on_L2_btn_released():
     GPIO.output(LEFT21, GPIO.LOW)
     GPIO.output(LEFT22, GPIO.LOW)
 
-def on_left_stick_moved(joystick):
-    # Convert joystick values to motor speeds
-    x, y = joystick
-    left_speed = max(-1, min(1, y + x))
-    right_speed = max(-1, min(1, y - x))
-    
-    # Set motor speeds
-    if left_speed > 0:
-        GPIO.output(LEFT11, GPIO.HIGH)
-        GPIO.output(LEFT12, GPIO.LOW)
-        GPIO.output(LEFT21, GPIO.HIGH)
-        GPIO.output(LEFT22, GPIO.LOW)
-    else:
-        GPIO.output(LEFT11, GPIO.LOW)
-        GPIO.output(LEFT12, GPIO.HIGH)
-        GPIO.output(LEFT21, GPIO.LOW)
-        GPIO.output(LEFT22, GPIO.HIGH)
-        
-    if right_speed > 0:
-        GPIO.output(RIGHT11, GPIO.HIGH)
-        GPIO.output(RIGHT12, GPIO.LOW)
-        GPIO.output(RIGHT21, GPIO.HIGH)
-        GPIO.output(RIGHT22, GPIO.LOW)
-    else:
-        GPIO.output(RIGHT11, GPIO.LOW)
-        GPIO.output(RIGHT12, GPIO.HIGH)
-        GPIO.output(RIGHT21, GPIO.LOW)
-        GPIO.output(RIGHT22, GPIO.HIGH)
+def on_L1_btn_pressed():
+    GPIO.output(LEFT11, GPIO.LOW)
+    GPIO.output(LEFT12, GPIO.LOW)
+    GPIO.output(LEFT21, GPIO.LOW)
+    GPIO.output(LEFT22, GPIO.LOW)
+    GPIO.output(RIGHT11, GPIO.HIGH)
+    GPIO.output(RIGHT12, GPIO.HIGH)
+    GPIO.output(RIGHT21, GPIO.HIGH)
+    GPIO.output(RIGHT22, GPIO.HIGH)
+
+def on_L1_btn_released():
+    GPIO.output(LEFT11, GPIO.LOW)
+    GPIO.output(LEFT12, GPIO.LOW)
+    GPIO.output(LEFT21, GPIO.LOW)
+    GPIO.output(LEFT22, GPIO.LOW)
+    GPIO.output(RIGHT11, GPIO.LOW)
+    GPIO.output(RIGHT12, GPIO.LOW)
+    GPIO.output(RIGHT21, GPIO.LOW)
+    GPIO.output(RIGHT22, GPIO.LOW)
+
+def on_R1_btn_pressed():
+    GPIO.output(LEFT11, GPIO.HIGH)
+    GPIO.output(LEFT12, GPIO.HIGH)
+    GPIO.output(LEFT21, GPIO.HIGH)
+    GPIO.output(LEFT22, GPIO.HIGH)
+    GPIO.output(RIGHT11, GPIO.LOW)
+    GPIO.output(RIGHT12, GPIO.LOW)
+    GPIO.output(RIGHT21, GPIO.LOW)
+    GPIO.output(RIGHT22, GPIO.LOW)
+
+def on_R1_btn_released():
+    GPIO.output(LEFT11, GPIO.LOW)
+    GPIO.output(LEFT12, GPIO.LOW)
+    GPIO.output(LEFT21, GPIO.LOW)
+    GPIO.output(LEFT22, GPIO.LOW)
+    GPIO.output(RIGHT11, GPIO.LOW)
+    GPIO.output(RIGHT12, GPIO.LOW)
+    GPIO.output(RIGHT21, GPIO.LOW)
+    GPIO.output(RIGHT22, GPIO.LOW)
+
+
 
 # Event bindings
 controller.btn_ps.on_down(lambda: stop())
@@ -158,7 +171,11 @@ controller.btn_r2.on_down(on_R2_btn_pressed)
 controller.btn_r2.on_up(on_R2_btn_released)
 controller.btn_l2.on_down(on_L2_btn_pressed)
 controller.btn_l2.on_up(on_L2_btn_released)
-controller.left_stick.on_change(on_left_stick_moved)
+controller.btn_l1.on_down(on_L1_btn_pressed)
+contoller.btn_l1.on_up(on_L1_btn_released)
+controller.btn_r1.on_down(on_R1_btn_pressed)
+controller.btn_r1.on_up(on_R1_btn_released)
+
 # controller.btn_triangle.on_down(on_triangle_btn_pressed)
 # controller.btn_cross.on_down(on_cross_btn_pressed)
 # controller.btn_l1.on_down(on_L1_btn_pressed)
