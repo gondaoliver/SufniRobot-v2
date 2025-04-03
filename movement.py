@@ -108,6 +108,7 @@ def on_R2_btn_released():
     GPIO.output(LEFT12, GPIO.LOW)
     GPIO.output(LEFT21, GPIO.LOW)
     GPIO.output(LEFT22, GPIO.LOW)
+    time.sleep(0.1)
 
 
 def on_L2_btn_pressed():
@@ -129,6 +130,7 @@ def on_L2_btn_released():
     GPIO.output(LEFT12, GPIO.LOW)
     GPIO.output(LEFT21, GPIO.LOW)
     GPIO.output(LEFT22, GPIO.LOW)
+    time.sleep(0.1)
 
 def on_L1_btn_pressed():
     GPIO.output(LEFT11, GPIO.LOW)
@@ -149,6 +151,7 @@ def on_L1_btn_released():
     GPIO.output(RIGHT12, GPIO.LOW)
     GPIO.output(RIGHT21, GPIO.LOW)
     GPIO.output(RIGHT22, GPIO.LOW)
+    time.sleep(0.1)
 
 def on_R1_btn_pressed():
     GPIO.output(LEFT11, GPIO.HIGH)
@@ -169,6 +172,7 @@ def on_R1_btn_released():
     GPIO.output(RIGHT12, GPIO.LOW)
     GPIO.output(RIGHT21, GPIO.LOW)
     GPIO.output(RIGHT22, GPIO.LOW)
+    time.sleep(0.1)
 
 
 
