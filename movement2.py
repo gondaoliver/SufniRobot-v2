@@ -155,7 +155,9 @@ listener_thread.start()
 
 try:
     while is_running:
-        time.sleep(0.001)
-        time.sleep(0.001)
+        time.sleep(0.01)
+except KeyboardInterrupt:
+    is_running = False
 finally:
     stop()  # Ensure cleanup even if error occurs
+    GPIO.cleanup
