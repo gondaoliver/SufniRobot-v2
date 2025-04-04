@@ -1,7 +1,8 @@
 import time
 import RPi.GPIO as GPIO
-from dualsense_controller import DualSenseController
 from adafruit_servokit import ServoKit
+import pyautogui
+import threading
 
 # Initialize servo driver (3 servos: 0-Shoulder, 1-Elbow, 2-Gripper)
 #kit = ServoKit(channels=16)
@@ -36,7 +37,6 @@ GPIO.setup(LEFT22, GPIO.OUT)
 # p.start(0)
 
 # Controller setup
-controller = DualSenseController()
 is_running = True
 
 def stop():
@@ -88,7 +88,7 @@ def stop():
 #     move_servo(2, -10)  # Close gripper
 
 # Original vehicle controls (unchanged)
-def on_R2_btn_pressed():
+def on_W_pressed():
     GPIO.output(RIGHT11, GPIO.HIGH)
     GPIO.output(RIGHT12, GPIO.LOW)
     GPIO.output(RIGHT21, GPIO.HIGH)
@@ -98,7 +98,7 @@ def on_R2_btn_pressed():
     GPIO.output(LEFT21, GPIO.HIGH)
     GPIO.output(LEFT22, GPIO.LOW)
 
-def on_R2_btn_released():
+def on_W_released():
     GPIO.output(RIGHT11, GPIO.LOW)
     GPIO.output(RIGHT12, GPIO.LOW)
     GPIO.output(RIGHT21, GPIO.LOW)
@@ -110,7 +110,7 @@ def on_R2_btn_released():
     time.sleep(0.1)
 
 
-def on_L2_btn_pressed():
+def on_S_pressed():
     GPIO.output(RIGHT11, GPIO.LOW)
     GPIO.output(RIGHT12, GPIO.HIGH)
     GPIO.output(RIGHT21, GPIO.LOW)
@@ -120,7 +120,7 @@ def on_L2_btn_pressed():
     GPIO.output(LEFT21, GPIO.LOW)
     GPIO.output(LEFT22, GPIO.HIGH)
 
-def on_L2_btn_released():
+def on_S_released():
     GPIO.output(RIGHT11, GPIO.LOW)
     GPIO.output(RIGHT12, GPIO.LOW)
     GPIO.output(RIGHT21, GPIO.LOW)
@@ -131,7 +131,7 @@ def on_L2_btn_released():
     GPIO.output(LEFT22, GPIO.LOW)
     time.sleep(0.1)
 
-def on_L1_btn_pressed():
+def on_A_pressed():
     GPIO.output(LEFT11, GPIO.LOW)
     GPIO.output(LEFT12, GPIO.HIGH)
     GPIO.output(LEFT21, GPIO.LOW)
@@ -141,7 +141,7 @@ def on_L1_btn_pressed():
     GPIO.output(RIGHT21, GPIO.HIGH)
     GPIO.output(RIGHT22, GPIO.LOW)
 
-def on_L1_btn_released():
+def on_A_released():
     GPIO.output(LEFT11, GPIO.LOW)
     GPIO.output(LEFT12, GPIO.LOW)
     GPIO.output(LEFT21, GPIO.LOW)
@@ -152,7 +152,7 @@ def on_L1_btn_released():
     GPIO.output(RIGHT22, GPIO.LOW)
     time.sleep(0.1)
 
-def on_R1_btn_pressed():
+def on_D_pressed():
     GPIO.output(LEFT11, GPIO.HIGH)
     GPIO.output(LEFT12, GPIO.LOW)
     GPIO.output(LEFT21, GPIO.HIGH)
@@ -162,7 +162,7 @@ def on_R1_btn_pressed():
     GPIO.output(RIGHT21, GPIO.LOW)
     GPIO.output(RIGHT22, GPIO.HIGH)
 
-def on_R1_btn_released():
+def on_D_released():
     GPIO.output(LEFT11, GPIO.LOW)
     GPIO.output(LEFT12, GPIO.LOW)
     GPIO.output(LEFT21, GPIO.LOW)
@@ -174,26 +174,32 @@ def on_R1_btn_released():
     time.sleep(0.1)
 
 
+def key_listener():
+    """Listen for keyboard events and trigger corresponding functions."""
+    while is_running:
+        if pyautogui.keyDown('w'):
+            on_W_pressed()
+        else:
+            on_W_released()
 
-# Event bindings
-controller.btn_ps.on_down(lambda: stop())
-controller.btn_r2.on_down(on_R2_btn_pressed)
-controller.btn_r2.on_up(on_R2_btn_released)
-controller.btn_l2.on_down(on_L2_btn_pressed)
-controller.btn_l2.on_up(on_L2_btn_released)
-controller.btn_l1.on_down(on_L1_btn_pressed)
-controller.btn_l1.on_up(on_L1_btn_released)
-controller.btn_r1.on_down(on_R1_btn_pressed)
-controller.btn_r1.on_up(on_R1_btn_released)
+        if pyautogui.keyDown('s'):
+            on_S_pressed()
+        else:
+            on_S_released()
 
-# controller.btn_triangle.on_down(on_triangle_btn_pressed)
-# controller.btn_cross.on_down(on_cross_btn_pressed)
-# controller.btn_l1.on_down(on_L1_btn_pressed)
-# controller.btn_r1.on_down(on_R1_btn_pressed)
-# controller.btn_l3.on_down(on_L3_btn_pressed)
-# controller.btn_r3.on_down(on_R3_btn_pressed)
+        if pyautogui.keyDown('a'):
+            on_A_pressed()
+        else:
+            on_A_released()
 
-controller.activate()
+        if pyautogui.keyDown('d'):
+            on_D_pressed()
+        else:
+            on_D_released()
+
+listener_thread = threading.Thread(target=key_listener, daemon=True)
+listener_thread.start()
+
 
 try:
     while is_running:
