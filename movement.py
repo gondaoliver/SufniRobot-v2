@@ -197,7 +197,7 @@ controller.activate()
 
 try:
     while is_running:
-        sleep(0.001)
+        time.sleep(0.001)
 finally:
     stop()  # Ensure cleanup even if error occurs
     controller.deactivate()
