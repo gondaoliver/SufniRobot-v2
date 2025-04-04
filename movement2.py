@@ -98,17 +98,6 @@ def on_W_pressed():
     GPIO.output(LEFT21, GPIO.HIGH)
     GPIO.output(LEFT22, GPIO.LOW)
 
-def on_W_released():
-    GPIO.output(RIGHT11, GPIO.LOW)
-    GPIO.output(RIGHT12, GPIO.LOW)
-    GPIO.output(RIGHT21, GPIO.LOW)
-    GPIO.output(RIGHT22, GPIO.LOW)
-    GPIO.output(LEFT11, GPIO.LOW)
-    GPIO.output(LEFT12, GPIO.LOW)
-    GPIO.output(LEFT21, GPIO.LOW)
-    GPIO.output(LEFT22, GPIO.LOW)
-    time.sleep(0.1)
-
 
 def on_S_pressed():
     GPIO.output(RIGHT11, GPIO.LOW)
@@ -120,16 +109,6 @@ def on_S_pressed():
     GPIO.output(LEFT21, GPIO.LOW)
     GPIO.output(LEFT22, GPIO.HIGH)
 
-def on_S_released():
-    GPIO.output(RIGHT11, GPIO.LOW)
-    GPIO.output(RIGHT12, GPIO.LOW)
-    GPIO.output(RIGHT21, GPIO.LOW)
-    GPIO.output(RIGHT22, GPIO.LOW)
-    GPIO.output(LEFT11, GPIO.LOW)
-    GPIO.output(LEFT12, GPIO.LOW)
-    GPIO.output(LEFT21, GPIO.LOW)
-    GPIO.output(LEFT22, GPIO.LOW)
-    time.sleep(0.1)
 
 def on_A_pressed():
     GPIO.output(LEFT11, GPIO.LOW)
@@ -141,16 +120,7 @@ def on_A_pressed():
     GPIO.output(RIGHT21, GPIO.HIGH)
     GPIO.output(RIGHT22, GPIO.LOW)
 
-def on_A_released():
-    GPIO.output(LEFT11, GPIO.LOW)
-    GPIO.output(LEFT12, GPIO.LOW)
-    GPIO.output(LEFT21, GPIO.LOW)
-    GPIO.output(LEFT22, GPIO.LOW)
-    GPIO.output(RIGHT11, GPIO.LOW)
-    GPIO.output(RIGHT12, GPIO.LOW)
-    GPIO.output(RIGHT21, GPIO.LOW)
-    GPIO.output(RIGHT22, GPIO.LOW)
-    time.sleep(0.1)
+
 
 def on_D_pressed():
     GPIO.output(LEFT11, GPIO.HIGH)
@@ -162,16 +132,6 @@ def on_D_pressed():
     GPIO.output(RIGHT21, GPIO.LOW)
     GPIO.output(RIGHT22, GPIO.HIGH)
 
-def on_D_released():
-    GPIO.output(LEFT11, GPIO.LOW)
-    GPIO.output(LEFT12, GPIO.LOW)
-    GPIO.output(LEFT21, GPIO.LOW)
-    GPIO.output(LEFT22, GPIO.LOW)
-    GPIO.output(RIGHT11, GPIO.LOW)
-    GPIO.output(RIGHT12, GPIO.LOW)
-    GPIO.output(RIGHT21, GPIO.LOW)
-    GPIO.output(RIGHT22, GPIO.LOW)
-    time.sleep(0.1)
 
 
 def key_listener():
@@ -179,23 +139,15 @@ def key_listener():
     while is_running:
         if pyautogui.keyDown('w'):
             on_W_pressed()
-        else:
-            on_W_released()
 
         if pyautogui.keyDown('s'):
             on_S_pressed()
-        else:
-            on_S_released()
 
         if pyautogui.keyDown('a'):
             on_A_pressed()
-        else:
-            on_A_released()
 
         if pyautogui.keyDown('d'):
             on_D_pressed()
-        else:
-            on_D_released()
 
 listener_thread = threading.Thread(target=key_listener, daemon=True)
 listener_thread.start()
@@ -207,4 +159,3 @@ try:
         time.sleep(0.001)
 finally:
     stop()  # Ensure cleanup even if error occurs
-    controller.deactivate()
