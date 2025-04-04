@@ -57,7 +57,6 @@ def stop():
     GPIO.output(LEFT21, GPIO.LOW)
     GPIO.output(LEFT22, GPIO.LOW)
 
-    GPIO.cleanup()
     print("All motors stopped and cleaned up")
 
 # def move_servo(index, step):
